@@ -14,6 +14,8 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -24,6 +26,10 @@ public class Application extends JFrame implements ActionListener {
 	private JTextField textField;
 	int xPlacement = 36;
 	int yPlacement = 100;
+	int yPlacementLabel = 77;
+	
+	private Collection<JTextField> textFields = new ArrayList<JTextField>();
+	
 	
 	/**
 	 * Launch the application.
@@ -83,28 +89,64 @@ public class Application extends JFrame implements ActionListener {
 		panelData.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnAddVertex = new JButton("Agregar");
-		btnAddVertex.setBounds(446, 11, 89, 23);
+		JButton btnAddVertex = new JButton("Generar CDM");
+		btnAddVertex.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				 System.out.println("Contents of fields:");
+	             for (JTextField textField : textFields) {
+	                    System.out.println("  input:"+textField.getText());
+	             }
+				
+			}
+		});
+		btnAddVertex.setBounds(621, 439, 133, 23);
 		panelData.add(btnAddVertex);
 		
 		JButton btnAddEdge = new JButton("Agregar arista");
 		btnAddEdge.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				  JButton btnEdgeInput = new JButton("Button added");
+				  //JButton btnEdgeInput = new JButton("Button added");
 				  //btnEdgeInput.setSize(150, 150);
-				
-				  btnEdgeInput.setBounds(xPlacement, yPlacement, 100, 20);
+				  
+				  JLabel lblEdgeOrigin = new JLabel("Origen");
+				  lblEdgeOrigin.setBounds(xPlacement, yPlacementLabel, 86, 20);
+				  panelData.add(lblEdgeOrigin);
+				  
+				  JTextField textField_1 = new JTextField();
+				  textField_1.setBounds(xPlacement, yPlacement, 86, 20);
+				  panelData.add(textField_1);
+				  textField_1.setColumns(10);
+				  textFields.add(textField_1);
+				  
+				  
+				  JLabel lblEdgeDestiny = new JLabel("Destino");
+				  lblEdgeDestiny.setBounds(xPlacement+100, yPlacementLabel, 86, 20);
+				  panelData.add(lblEdgeDestiny);
+				  
+				  JTextField textField_2 = new JTextField();
+				  textField_2.setBounds(xPlacement+100, yPlacement, 86, 20);
+				  panelData.add(textField_2);
+				  textField_2.setColumns(10);
+				  
+				  textFields.add(textField_2);
+				  
+				  //btnEdgeInput.setBounds(xPlacement, yPlacement, 100, 20);
 				  yPlacement += 40;
-				  panelData.add(btnEdgeInput); //panelData.repaint(); panelData.validate();
+				  yPlacementLabel += 40;
+				  //panelData.add(btnEdgeInput); //panelData.repaint(); panelData.validate();
 				  panelData.repaint();
 				  
 				
 				
 			}
 		});
+		
+		
 		btnAddEdge.setBounds(37, 51, 133, 23);
 		panelData.add(btnAddEdge);
+				
 		
 		JPanel panelResults = new JPanel();
 		panelResults.setBounds(0, 0, 764, 473);
