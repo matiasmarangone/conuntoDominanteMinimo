@@ -28,7 +28,8 @@ public class Application extends JFrame implements ActionListener {
 	int yPlacement = 100;
 	int yPlacementLabel = 77;
 	
-	private Collection<JTextField> textFields = new ArrayList<JTextField>();
+	static ArrayList<JTextField> textFields = new ArrayList<JTextField>();
+	//JTextField[] arrayValores =
 	
 	
 	/**
@@ -52,6 +53,10 @@ public class Application extends JFrame implements ActionListener {
 	 */
 	public Application() {
 		initialize();
+	}
+	
+	public static ArrayList<JTextField> getTextField() {
+		return textFields;
 	}
 	
 	
@@ -92,9 +97,11 @@ public class Application extends JFrame implements ActionListener {
 		JButton btnAddVertex = new JButton("Generar CDM");
 		btnAddVertex.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				 
+				 int[] intArray = new int[textFields.size()];
 				 System.out.println("Contents of fields:");
 	             for (JTextField textField : textFields) {
+	            	 
 	                    System.out.println("  input:"+textField.getText());
 	             }
 				
