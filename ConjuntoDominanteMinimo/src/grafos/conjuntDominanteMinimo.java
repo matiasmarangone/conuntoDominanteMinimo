@@ -1,6 +1,8 @@
 package grafos;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.JTextField;
 
@@ -8,11 +10,17 @@ import application.Application;
 
 public class conjuntDominanteMinimo {
 
-	static Grafo g = new Grafo(6);
-	static String resultadoFinal;
+	//static Grafo g = new Grafo(6);
+	//static Grafo g_aux = new Grafo(6);
+	static String resultadoFinal = "";
+	static ArrayList<Integer> conjuntoDomMinimo = new ArrayList<Integer>();
+	static boolean g_aux_vacio = false;
+	static Set<Integer> aux = new HashSet<Integer>();
 
 	public static String cDM(ArrayList<JTextField> vertexList) {
-		//Application.getTextField();
+		
+		Grafo g = new Grafo(Math.round(vertexList.size()/2)-1);
+		//add the vertexList data to the graph----------------------------------------
 
 		int counter = 0;
 		int temporal = 0;
@@ -23,11 +31,51 @@ public class conjuntDominanteMinimo {
 				counter++;
 			}else {
 				g.agregarArista(temporal, Integer.parseInt(textField.getText()));
+				//g_aux.agregarArista(temporal, Integer.parseInt(textField.getText()));
 				counter++;
 			}
 
 		}
-
+		
+		//apply algoritmo goloso----------------------------------------
+		
+	 
+		 while(!g_aux_vacio) {
+				//Arrancamos con un conjunto vacio, nuestro caso es conjuntoDomMinimo
+				
+				//Agarrar el vertice de mayor grado que no esté en el conjunto
+				//Eso lo hacemos con g.verticeMayorGrado(conjuntoDomMinimo)
+				
+				//Agregarlo al conjunto
+				//Eso lo hacemos con conjuntoDomMinimo.add
+				conjuntoDomMinimo.add(g.verticeMayorGrado(conjuntoDomMinimo));
+				
+				//Preguntar si todos los vertices que no son parte del conjunto son vecinos de alguno del conjunto
+				
+				//Por cada elemento del conjunto preguntar sus vecinos
+				//ir a la copia del grafo, apagar los vertices del conjunto y sus vecinos
+				//si la copia del grafo está vacia quiere decir que todos los vertices son vecinos de mi conjunto
+				 for (Integer a : conjuntoDomMinimo) {
+		        	 
+					 for (Integer b : g.vecinos(a)) {
+						 aux.add(b);
+					 }
+					 //aux = g.vecinos(a);
+					 //aux.addAll(g.vecinos(a));
+				 }
+				
+				 if(aux.size()==g.tamano()) {
+					 g_aux_vacio = true;
+				 }
+				 //Set<Integer> aux1 = g.vecinos(1);
+				 
+				 
+		 }
+		 
+		 
+		 resultadoFinal = conjuntoDomMinimo.toString();
+		 
+		
 		return resultadoFinal;
 	}
 
@@ -91,8 +139,10 @@ public class conjuntDominanteMinimo {
 		textField_14.setText("5");
 		textFields.add(textField_14);
 
-		cDM(textFields);
-
+		
+		
+		System.out.println(cDM(textFields));
+		
 	}
 
 }

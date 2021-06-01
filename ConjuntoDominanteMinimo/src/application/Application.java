@@ -19,6 +19,8 @@ import java.util.Collection;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
+import grafos.conjuntDominanteMinimo;
+
 public class Application extends JFrame implements ActionListener {
 
 	private JFrame frame;
@@ -104,6 +106,9 @@ public class Application extends JFrame implements ActionListener {
 	            	 
 	                    System.out.println("  input:"+textField.getText());
 	             }
+	             
+	             conjuntDominanteMinimo.cDM(textFields);
+	             
 				
 			}
 		});

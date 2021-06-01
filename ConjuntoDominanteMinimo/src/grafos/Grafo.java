@@ -1,5 +1,6 @@
 package grafos;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +13,29 @@ public class Grafo
 	public Grafo(int vertices)
 	{
 		A = new boolean[vertices][vertices];
+	}
+	
+	public int verticeMayorGrado(ArrayList<Integer> conjuntoDomMinimo) {
+		int vertice = 0;
+		int counter = 0;
+		int counter_ant = 0;
+		for(int i=0; i<A.length;i++) {
+			for(int j=0; j<A.length; j++) {
+				if(A[i][j]==true) {
+					counter++;
+				}
+			}
+			if(counter > counter_ant && !conjuntoDomMinimo.contains(i)) {
+				vertice = i;
+				counter_ant = counter;
+				
+				//counter = 0;
+			}
+			counter = 0;
+			
+		}
+		
+		return vertice;
 	}
 	
 	// Agregado de aristas
