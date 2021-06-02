@@ -17,9 +17,9 @@ public class conjuntDominanteMinimo {
 	static boolean g_aux_vacio = false;
 	static Set<Integer> aux = new HashSet<Integer>();
 
-	public static String cDM(ArrayList<JTextField> vertexList) {
+	public static String cDM(ArrayList<JTextField> vertexList, String vertexAmount) {
 		
-		Grafo g = new Grafo(Math.round(vertexList.size()/2)-1);
+		Grafo g = new Grafo(Integer. parseInt(vertexAmount));
 		//add the vertexList data to the graph----------------------------------------
 
 		int counter = 0;
@@ -141,7 +141,7 @@ public class conjuntDominanteMinimo {
 
 		
 		
-		System.out.println(cDM(textFields));
+		System.out.println(cDM(textFields, "6"));
 		
 	}
 

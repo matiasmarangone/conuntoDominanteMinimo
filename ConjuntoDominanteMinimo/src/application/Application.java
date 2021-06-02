@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 import grafos.conjuntDominanteMinimo;
 
@@ -91,24 +92,28 @@ public class Application extends JFrame implements ActionListener {
 		lblAddVertex.setBounds(36, 15, 312, 14);
 		panelData.add(lblAddVertex);
 		
-		textField = new JTextField();
-		textField.setBounds(332, 12, 86, 20);
-		panelData.add(textField);
-		textField.setColumns(10);
+		JTextField vertexAmount = new JTextField();
+		vertexAmount.setBounds(332, 12, 86, 20);
+		panelData.add(vertexAmount);
+		vertexAmount.setColumns(10);
+		
+		JPanel panelResults = new JPanel();
+		panelResults.setBounds(0, 0, 764, 473);
+		layeredPane.add(panelResults);
 		
 		JButton btnAddVertex = new JButton("Generar CDM");
 		btnAddVertex.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 
-				 int[] intArray = new int[textFields.size()];
-				 System.out.println("Contents of fields:");
-	             for (JTextField textField : textFields) {
-	            	 
-	                    System.out.println("  input:"+textField.getText());
-	             }
+				
+				  
+	             String finalResult = conjuntDominanteMinimo.cDM(textFields, vertexAmount.getText());
 	             
-	             conjuntDominanteMinimo.cDM(textFields);
 	             
+	             JTextPane txtpnPanelAgmRegiones = new JTextPane();
+	             txtpnPanelAgmRegiones.setText(finalResult);
+	             panelResults.add(txtpnPanelAgmRegiones);
+	             switchPanels(panelResults);
 				
 			}
 		});
@@ -160,11 +165,9 @@ public class Application extends JFrame implements ActionListener {
 		panelData.add(btnAddEdge);
 				
 		
-		JPanel panelResults = new JPanel();
-		panelResults.setBounds(0, 0, 764, 473);
-		layeredPane.add(panelResults);
 		
-		JLabel lblTestResultsPanel = new JLabel("Panel resultados");
+		
+		JLabel lblTestResultsPanel = new JLabel("Conjunto Dominante Minimo:");
 		panelResults.add(lblTestResultsPanel);
 		
 		JButton btnDataInput = new JButton("Ingreso de datos");
