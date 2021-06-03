@@ -58,13 +58,20 @@ public class conjuntDominanteMinimo {
 				 for (Integer a : conjuntoDomMinimo) {
 		        	 
 					 for (Integer b : g.vecinos(a)) {
-						 aux.add(b);
+						 if(!conjuntoDomMinimo.contains(b)) {
+							 aux.add(b);
+						 }else {
+							 aux.remove(b);
+						 }
+						 
 					 }
 					 //aux = g.vecinos(a);
 					 //aux.addAll(g.vecinos(a));
 				 }
 				
-				 if(aux.size()==g.tamano()) {
+				 //if(aux.size()==g.tamano()) {
+				 
+				 if(aux.size() + conjuntoDomMinimo.size() ==g.tamano()) {
 					 g_aux_vacio = true;
 				 }
 				 //Set<Integer> aux1 = g.vecinos(1);
