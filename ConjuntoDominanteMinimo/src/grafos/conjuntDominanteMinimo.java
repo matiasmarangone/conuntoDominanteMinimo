@@ -13,7 +13,7 @@ public class conjuntDominanteMinimo {
 	//static Grafo g = new Grafo(6);
 	//static Grafo g_aux = new Grafo(6);
 	static String resultadoFinal = "";
-	static ArrayList<Integer> conjuntoDomMinimo = new ArrayList<Integer>();
+	public static ArrayList<Integer> conjuntoDomMinimo = new ArrayList<Integer>();
 	static boolean g_aux_vacio = false;
 	static Set<Integer> aux = new HashSet<Integer>();
 
